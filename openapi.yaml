@@ -52,7 +52,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-        - in: "query"
+        - in: "path"
           name: "idAccount"
           type: "integer"
           format: "int32"
