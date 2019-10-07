@@ -1,0 +1,336 @@
+swagger: "2.0"
+info:
+  description: "Domain Services Account Bank"
+  version: "1.0.0"
+  title: "Domain Services Account Bank"
+
+host: localhost
+basePath: "/account/v1"
+tags:
+- name: "Account Bank"
+  description: "Develop features in the Rest API that performs banking."
+schemes:
+  - "https"
+  
+responses:
+  201-SuccessfulRequest:
+    description: "Successful Request"
+  204-SuccessfulRequestNoContent:
+    description: "Successful Request No Content"
+  400-BadRequest:
+    description: "Bad Request"
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"    
+  401-Unauthorized:
+    description: Unauthorized
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"    
+  403-Forbidden:
+    description: Forbidden
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"            
+  404-DataNotFound:
+    description: "Data not found"
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"
+  405-DataInvalid:
+    description: "Data input not supplied or invalid"
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"   
+  500-InternalError:
+    description: "Internal Error"
+    schema:
+      $ref: "#/definitions/ApiErrorResponse"     
+      
+paths:
+  /account/operation/extract/{idAccount}:
+    get:
+      tags:
+      - "getExtract"
+      summary: "Extract Account"
+      description: "Extract Account"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "query"
+          name: "idAccount"
+          type: "integer"
+          format: "int32"
+          required: true
+      responses:
+        200:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"
+  /account/operation/bloq:
+    post:
+      tags:
+      - "bloqAccount"
+      summary: "Bloq Account"
+      description: "Bloq Account"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "account"
+          description: "Account Enitity"
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      responses:
+        200:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"
+  /account/operation/withdrawal:
+    post:
+      tags:
+      - "withdrawal"
+      summary: "Withdrawal"
+      description: "Withdrawal"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "query"
+          name: "value"
+          description: "Value Withdrawal"
+          required: true 
+          type: number
+          format: double
+        - in: "body"
+          name: "account"
+          description: "Account Enitity"
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      responses:
+        200:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"
+  /account/operation/balance:
+    get:
+      tags:
+      - "getBalanceInquiry"
+      summary: "Balance Inquiry"
+      description: "Balance Inquiry"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "query"
+          name: "idAccount"
+          type: "integer"
+          format: "int32"
+          required: true
+      responses:
+        200:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"
+  /account/operation/deposit:
+    post:
+      tags:
+      - "createDeposit"
+      summary: "Create New Deposit"
+      description: "Create New Deposit"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "account"
+          description: "Account Enitity"
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+        - in: "query"
+          name: "value"
+          description: "Value Deposit"
+          required: true  
+          type: number
+          format: double  
+      responses:
+        201:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"
+  /account:
+    put:
+      tags:
+      - "createAccount"
+      summary: "Create New Account"
+      description: "Create New Account"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "Account"
+          description: "Account Enitity"
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      responses:
+        201:
+          $ref: "#/responses/201-SuccessfulRequest"
+        400:               
+          $ref: "#/responses/400-BadRequest"  
+        401:               
+          $ref: "#/responses/401-Unauthorized"   
+        403:
+          $ref: "#/responses/403-Forbidden"
+        404:
+          $ref: "#/responses/404-DataNotFound"    
+        405:
+          $ref: "#/responses/405-DataInvalid"
+        500:
+           $ref: "#/responses/500-InternalError"    
+definitions:
+  Person:
+    type: "object"
+    description: "Transaction Enitity"
+    properties:
+      idPerson:
+        description: "Person ID"
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+        description: "Name"
+      cpf:
+        type: "string"
+        format: date
+        description: "CPF"
+      birthDate:
+        type: "string"
+        format: date
+        description: "Birth Date"  
+  Account:
+    type: "object"
+    description: "Account Enitity"
+    properties:
+      idAccount:
+        description: "Account ID"
+        type: "integer"
+        format: "int32"
+      person:
+        $ref: "#/definitions/Person"
+      balance:
+        type: "number"
+        format: double
+        description: "Balance"
+      limiteWithdrawalDaily:
+        type: "number"
+        format: double
+        description: "Limit Withdrawal Daily"
+      activeFlag:
+        type: boolean
+        description: "Flag Active"
+      accountType:
+        type: integer
+        format: "int32"
+        description: "Account Type"
+      createDate:
+        type: "string"
+        format: date
+        description: "Create Date"
+  Transaction:
+    type: "object"
+    description: "Transaction Enitity"
+    properties:
+      idTransaction:
+        description: "Transaction ID"
+        type: "integer"
+        format: "int32"
+      account:
+        $ref: "#/definitions/Account"
+      value:
+        type: number
+        format: double
+        description: "Value"
+      transactionDate:
+        type: "string"
+        format: date
+        description: "Transaction Date"          
+  Error:
+    type: "object"
+    description: "Error Enitity"
+    properties:
+      code:
+        type: "string"
+        description: "Error ID"
+      message:
+        type: "string"
+        description: "Error Description"
+      nativeMessage:
+        type: "string"
+        description: "Native Error description"                
+      trackid:
+        type: "string"
+        description: "(Optional) Track ID of transaction"      
+  ApiErrorResponse:
+    type: "object"
+    description: "Error API responses"
+    properties:
+      code:
+        type: "string"
+        description: "Error CODE"
+      message:
+        type: "string"
+        description: "Error Description"
+      description:
+        type: "string"
+        description: "Error Details"
+      errors:
+        type: "array"
+        description: "Membership Erros"
+        items:
+          $ref: "#/definitions/Error"      
