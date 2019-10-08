@@ -37,7 +37,7 @@ docker exec -it <container_name> bash
 psql -U postgres
 ```
 
-Depois execute o script conductor_script.sql dentro do terminal após executar o comando: **psql -U postgres**
+Depois execute o script **conductor_script.sql** dentro do terminal após executar o comando: **psql -U postgres**
 
 # Exibir contêiner
 
