@@ -26,8 +26,18 @@ docker run --name postgres \
   -e POSTGRES_PASSWORD=12345678 \
   -e POSTGRES_DB=postgres \
   -p 5432:5432 \
-  -d postgres
+  -v postgres-data:/var/lib/pgsql/10/data \
+  -d postgres:11
 ```
+
+
+# Execute Docker Postgres Script 
+```shell
+docker exec -it <container_name> bash
+psql -U postgres
+```
+
+Depois execute o script conductor_script.sql dentro do terminal após executar o comando: **psql -U postgres**
 
 # Exibir contêiner
 
@@ -70,5 +80,7 @@ docker run -it --network=host --env-file env.properties --env-file secret.proper
 # Documentação com Swagger IO 
 
 Clique no link https://editor.swagger.io/ em **File -> import file** abra o arquivo openapi.yaml.
+
+
 
 
