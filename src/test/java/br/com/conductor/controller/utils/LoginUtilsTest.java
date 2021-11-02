@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.UnsupportedEncodingException;
+
 @RunWith(SpringRunner.class)
 public class LoginUtilsTest {
 
@@ -31,43 +33,119 @@ public class LoginUtilsTest {
     @Test
     public void testNoContainsNumberCaracter() {
         String password = "ABCDEFGHI";
-        Assert.assertFalse(utils.isContainsNumberCaracter(password));
+        Assert.assertTrue(utils.isContainsNumberCaracter(password));
     }
 
     @Test
     public void testContainsNumberCaracter() {
         String password = "AbTp9@fok";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "2AAAaA@Z1";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "AbTp1@fok";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "3AAAAA";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "4@#$#$";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
-        password = "5";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        password = "A5Z";
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "6";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
         password = "17";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
 
-        password = "81";
-        Assert.assertTrue(utils.isContainsNumberCaracter(password));
+        password = "GG81";
+        Assert.assertFalse(utils.isContainsNumberCaracter(password));
     }
 
     @Test
-    public void testIsValidFalse() {
+    public void testSpecialCaracter() {
 
-        String password = "";
+        String password = "!";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "@";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "#";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "$";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "%";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "^";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "&";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "*";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "(";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = ")";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "-";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+
+        password = "+";
+        Assert.assertFalse(utils.isContainsSpecialCaracters(password));
+    }
+
+    @Test
+    public void testIsValidMoreNineCaracters() {
+        String password = "123456789";
+        Assert.assertTrue(utils.isNineOrMoreCaracter(password));
+    }
+
+    @Test
+    public void testCaracterRepeated() throws UnsupportedEncodingException {
+        String password = "aa";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "1b1";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "abc";
+        Assert.assertFalse(utils.isContainsCaracterRepeated(password));
+
+        password = "bb";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "AA";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "AAbTp9fo";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "AbTp9!fo9";
+        Assert.assertTrue(utils.isContainsCaracterRepeated(password));
+
+        password = "AbTp9 fok";
+        Assert.assertFalse(utils.isContainsCaracterRepeated(password));
+
+        password = "AbTp9!fok";
+        Assert.assertFalse(utils.isContainsCaracterRepeated(password));
+    }
+
+    @Test
+    public void testIsValidFalse() throws UnsupportedEncodingException {
+
+        String password = " ";
         Assert.assertFalse(utils.isValid(password));
 
         password = "aa";
@@ -87,52 +165,6 @@ public class LoginUtilsTest {
 
         password = "AbTp9 fok";
         Assert.assertFalse(utils.isValid(password));
-    }
-
-    @Test
-    public void testSpecialCaracter() {
-
-        String password = "!";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "@";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "#";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "$";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "%";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "^";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "&";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "*";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "(";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = ")";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "-";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-
-        password = "+";
-        Assert.assertTrue(utils.isContainsSpecialCaracters(password));
-    }
-
-    @Test
-    public void testIsValidMoreNineCaracters() {
-        String password = "123456789";
-        Assert.assertTrue(utils.isNineOrMoreCaracter(password));
     }
 
     @Test
