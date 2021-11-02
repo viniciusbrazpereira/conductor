@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.UnsupportedEncodingException;
-
 @RestController
 public class LoginController implements LoginControllerApi {
 
@@ -18,7 +16,7 @@ public class LoginController implements LoginControllerApi {
 
     @GetMapping("/login")
     public ResponseEntity<Object> login(
-            @ApiParam(value = "Value password", required=true) @RequestParam("password") String password) throws UnsupportedEncodingException {
+            @ApiParam(value = "Value password", required=true) @RequestParam("password") String password){
         return service.isValid(password);
     }
 }
