@@ -25,11 +25,24 @@ Arquitetura do Projeto
 * [Maven 3.8.3 wrapper] - O Apache Maven é uma ferramenta de gerenciamento e compreensão de projetos de software. Com base no conceito de um modelo de objeto de projeto (POM),
   O Maven pode gerenciar a construção, os relatórios e a documentação de um projeto a partir de uma informação central.
 
+## Pontos de utilização da solução
+
+- Como uma das principais formas de solução foi utilizado regex, utilizada para facilitar na validação de um texto.
+- A implementação foi realizada através de utilização do BDD(Behavior Driven Development) que é um conjunto de práticas de engenharia de software projetado para construir e entregar mais rápidamente software e com qualidade.
+- Utilizado Design patterns uma solução típicas para problemas comuns, como por exemplo Singleton(Que permite garantir que uma classe tem apenas uma instaância, tendo com validação um unico ponto de acesso).
+- Spring boot a fim de garantir uma abordagem mais rapida na criação de API Web com padrão arquitetural REST.
+
 # Construindo aplicação utilizando maven
 
 No diretório do projeto /conductor:
 ```shell
 mvnw clean install
+```
+
+
+# Ou
+```shell
+sh mvnw clean install
 ```
 
 # Variável de ambiente
@@ -48,7 +61,7 @@ docker run -d -p 8080:8080 {IMAGE_ID} .
 
 # Execução da chamada de teste
 ```shell
-curl -X GET http://localhost:8080/login?password=AbTp9!fok
+curl -X GET 'http://localhost:8080/login?password=AbTp9!fok'
 ```
 
 # Conductor - Desafio Técnico
