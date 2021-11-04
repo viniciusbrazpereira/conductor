@@ -77,7 +77,7 @@ OBS.: {IMAGE_ID} substitua pelo ID da imagem criada no docker.
 
 # Execução da chamada de teste
 ```shell
-curl http://localhost:8080/login?password=AbTp9!fok
+curl 'http://localhost:8080/login?password=AbTp9!fok'
 ```
 
 # Executando aplicação utilizando maven
