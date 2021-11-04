@@ -64,6 +64,13 @@ docker run -d -p 8080:8080 {IMAGE_ID} .
 curl http://localhost:8080/login?password=AbTp9!fok
 ```
 
+# Executando aplicação utilizando maven
+
+No diretório do projeto /conductor:
+```shell
+mvnw spring-boot:run
+```
+
 # Conductor - Desafio Técnico
 
 Desenvolver os recursos em API Rest que realizam operações bancárias.
