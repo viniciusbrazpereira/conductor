@@ -61,7 +61,7 @@ docker run -d -p 8080:8080 {IMAGE_ID} .
 
 # Execução da chamada de teste
 ```shell
-curl -X GET 'http://localhost:8080/login?password=AbTp9!fok'
+curl http://localhost:8080/login?password=AbTp9!fok
 ```
 
 # Conductor - Desafio Técnico
