@@ -7,13 +7,14 @@ Output: Um boolean indicando se a senha é válida.
 
 Consideração de uma senha válida, quando a mesma possuir as seguintes definições:
 
-Nove ou mais caracteres
-Ao menos 1 dígito
-Ao menos 1 letra minúscula
-Ao menos 1 letra maiúscula
-Ao menos 1 caractere especial
-Considere como especial os seguintes caracteres: !@#$%^&*()-+
-Não possuir caracteres repetidos dentro do conjunto
+----------------------
+* Nove ou mais caracteres
+* Ao menos 1 dígito
+* Ao menos 1 letra minúscula
+* Ao menos 1 letra maiúscula
+* Ao menos 1 caractere especial
+* Considere como especial os seguintes caracteres: !@#$%^&*()-+
+* Não possuir caracteres repetidos dentro do conjunto
 
 
 Arquitetura do Projeto
@@ -32,13 +33,21 @@ Arquitetura do Projeto
 - Utilizado Design patterns uma solução típicas para problemas comuns, como por exemplo Singleton(Que permite garantir que uma classe tem apenas uma instaância, tendo com validação um unico ponto de acesso).
 - Spring boot a fim de garantir uma abordagem mais rapida na criação de API Web com padrão arquitetural REST.
 
-# Construindo aplicação utilizando maven
+Build do Projeto
+----------------------
+A premissa do build é que já tenha o ambiente com a lista de **Arquitetura do Projeto** já instalada;
+OBS.: Os comandos podem sofrer uma pequena variação por conta do sistema operacional.
 
+# Copiando o repositório
+```shell
+git clone https://github.com/viniciusbrazpereira/conductor.git
+```
+
+# Construindo aplicação utilizando maven
 No diretório do projeto /conductor:
 ```shell
 mvnw clean install
 ```
-
 
 # Ou
 ```shell
@@ -58,6 +67,13 @@ export PROJETO_VERSAO=latest
 docker build -t "$PROJETO_BACKEND:$PROJETO_VERSAO" .
 docker run -d -p 8080:8080 {IMAGE_ID} .
 ```
+# Ou
+```shell
+docker build -t "iti:latest" .
+docker run -d -p 8080:8080 {IMAGE_ID} .
+```
+
+OBS.: {IMAGE_ID} substitua pelo ID da imagem criada no docker.
 
 # Execução da chamada de teste
 ```shell
@@ -70,6 +86,8 @@ No diretório do projeto /conductor:
 ```shell
 mvnw spring-boot:run
 ```
+
+
 
 # Conductor - Desafio Técnico
 
